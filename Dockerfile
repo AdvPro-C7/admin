@@ -7,7 +7,7 @@ RUN ./gradlew clean bootjar
 
 FROM docker.io/library/eclipse-temurin:21-jre-alpine AS runner
 
-ARG USER_NAME=functionality
+ARG USER_NAME=admin
 ARG USER_UID=1000
 ARG USER_GID=${USER_UID}
 
