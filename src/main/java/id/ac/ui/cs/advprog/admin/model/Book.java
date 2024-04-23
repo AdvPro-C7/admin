@@ -16,9 +16,9 @@ import lombok.Setter;
 public class Book {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
-    Long id;
+    int id;
 
     @Column(name = "title", updatable = false, nullable = false)
     @Setter(AccessLevel.NONE)
@@ -58,7 +58,7 @@ public class Book {
     @Column(name = "sold", nullable = false)
     int sold;
 
-    public Book(Long id, String title, String author, String publisher, double price, String description,
+    public Book(int id, String title, String author, String publisher, double price, String description,
                 int stock, String publishDate, String ISBN, int pages, String coverPicture, String category, int sold){
         this.id = id;
         this.title = title;
