@@ -44,7 +44,7 @@ public class Book {
     String publishDate;
 
     @Column(name = "isbn", nullable = false)
-    String ISBN;
+    String isbn;
 
     @Column(name = "pages")
     int pages;
@@ -59,7 +59,7 @@ public class Book {
     int sold;
 
     public Book(int id, String title, String author, String publisher, double price, String description,
-                int stock, String publishDate, String ISBN, int pages, String coverPicture, String category, int sold){
+                int stock, String publishDate, String isbn, int pages, String coverPicture, String category, int sold){
         this.id = id;
         this.title = title;
         this.author = author;
@@ -68,7 +68,7 @@ public class Book {
         this.description = description;
         this.stock = stock;
         this.publishDate = publishDate;
-        this.ISBN = ISBN;
+        this.isbn = isbn;
         this.pages = pages;
         this.coverPicture = coverPicture;
         this.category = category;
