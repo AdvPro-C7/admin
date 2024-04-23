@@ -1,7 +1,7 @@
 package id.ac.ui.cs.advprog.admin.model;
 
 public class BookBuilder {
-    private String bookId;
+    private Long bookId;
     private String title;
     private String author;
     private String publisher;
@@ -15,7 +15,7 @@ public class BookBuilder {
     private String category;
     private int sold;
 
-    public BookBuilder bookId(String bookId){
+    public BookBuilder bookId(Long bookId){
         this.bookId = bookId;
         return this;
     }
