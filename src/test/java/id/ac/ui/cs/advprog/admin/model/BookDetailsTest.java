@@ -22,7 +22,7 @@ public class BookDetailsTest {
                 .description("Tentang ilmuwan yang menciptakan mesin waktu")
                 .stock(10)
                 .publishDate("15-10-2009")
-                .ISBN("111-111-1111-11-1")
+                .isbn("111-111-1111-11-1")
                 .pages(250)
                 .coverPicture("https://m.media-amazon.com/images/M/MV5BMjUxMzE4ZDctODNjMS00MzIwLThjNDktODkwYjc5YWU0MDc0XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_FMjpg_UX1000_.jpg")
                 .category("Science Fiction")
@@ -40,7 +40,7 @@ public class BookDetailsTest {
         assertEquals(50000, book1.getPrice());
         assertEquals(10, book1.getStock());
         assertEquals("15-10-2009", book1.getPublishDate());
-        assertEquals("111-111-1111-11-1", book1.getISBN());
+        assertEquals("111-111-1111-11-1", book1.getIsbn());
         assertEquals(250, book1.getPages());
         assertEquals("https://m.media-amazon.com/images/M/MV5BMjUxMzE4ZDctODNjMS00MzIwLThjNDktODkwYjc5YWU0MDc0XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_FMjpg_UX1000_.jpg", book1.getCoverPicture());
         assertEquals("Science Fiction", book1.getCategory());
@@ -55,7 +55,7 @@ public class BookDetailsTest {
         book1.setPrice(65000);
         book1.setStock(5);
         book1.setPublishDate("15-10-2019");
-        book1.setISBN("111-111-1111-11-2");
+        book1.setIsbn("111-111-1111-11-2");
         book1.setPages(300);
         book1.setCoverPicture("https://api.duniagames.co.id/api/content/upload/file/19773053341627641590.jpg");
         book1.setCategory("Science adventure");
@@ -70,7 +70,7 @@ public class BookDetailsTest {
         assertEquals(65000, book1.getPrice());
         assertEquals(5, book1.getStock());
         assertEquals("15-10-2019", book1.getPublishDate());
-        assertEquals("111-111-1111-11-2", book1.getISBN());
+        assertEquals("111-111-1111-11-2", book1.getIsbn());
         assertEquals(300, book1.getPages());
         assertEquals("https://api.duniagames.co.id/api/content/upload/file/19773053341627641590.jpg", book1.getCoverPicture());
         assertEquals("Science adventure", book1.getCategory());
