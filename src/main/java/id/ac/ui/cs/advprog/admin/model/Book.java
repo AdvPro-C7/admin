@@ -58,6 +58,8 @@ public class Book {
     @Column(name = "sold", nullable = false)
     int sold;
 
+
+
     public Book(int id, String title, String author, String publisher, double price, String description,
                 int stock, String publishDate, String isbn, int pages, String coverPicture, String category, int sold){
         this.id = id;
