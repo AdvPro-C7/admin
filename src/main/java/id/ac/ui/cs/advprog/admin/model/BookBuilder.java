@@ -9,7 +9,7 @@ public class BookBuilder {
     private String description;
     private int stock;
     private String publishDate;
-    private String ISBN;
+    private String isbn;
     private int pages;
     private String coverPicture;
     private String category;
@@ -55,8 +55,8 @@ public class BookBuilder {
         return this;
     }
 
-    public BookBuilder ISBN(String ISBN){
-        this.ISBN = ISBN;
+    public BookBuilder isbn(String isbn){
+        this.isbn = isbn;
         return this;
     }
 
@@ -82,11 +82,11 @@ public class BookBuilder {
 
     public Book build(){
         if (title == null || author == null || publisher == null || price <= 0 || description == null || stock <= 0
-                || publishDate == null || ISBN == null || pages <= 0 || coverPicture == null || category == null || sold < 0) {
+                || publishDate == null || isbn == null || pages <= 0 || coverPicture == null || category == null || sold < 0) {
             throw new IllegalArgumentException();
         }
         else {
-            return new Book(bookId, title, author, publisher, price, description, stock, publishDate, ISBN, pages, coverPicture, category, sold);
+            return new Book(bookId, title, author, publisher, price, description, stock, publishDate, isbn, pages, coverPicture, category, sold);
         }
     };
 
