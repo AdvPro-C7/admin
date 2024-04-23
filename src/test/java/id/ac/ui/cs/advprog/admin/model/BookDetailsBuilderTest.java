@@ -18,7 +18,7 @@ public class BookDetailsBuilderTest {
                 .description("Tentang ilmuwan yang ingin memperbaiki kesalahnnya akibat mesin waktu")
                 .stock(2)
                 .publishDate("10-12-2015")
-                .ISBN("111-111-1111-11-1")
+                .isbn("111-111-1111-11-1")
                 .pages(250)
                 .coverPicture("https://m.media-amazon.com/images/M/MV5BMjUxMzE4ZDctODNjMS00MzIwLThjNDktODkwYjc5YWU0MDc0XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_FMjpg_UX1000_.jpg")
                 .category("Science Fiction")
@@ -33,7 +33,7 @@ public class BookDetailsBuilderTest {
         assertEquals(100000, book2.getPrice());
         assertEquals(2, book2.getStock());
         assertEquals("10-12-2015", book2.getPublishDate());
-        assertEquals("111-111-1111-11-1", book2.getISBN());
+        assertEquals("111-111-1111-11-1", book2.getIsbn());
         assertEquals(250, book2.getPages());
         assertEquals("https://m.media-amazon.com/images/M/MV5BMjUxMzE4ZDctODNjMS00MzIwLThjNDktODkwYjc5YWU0MDc0XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_FMjpg_UX1000_.jpg", book2.getCoverPicture());
         assertEquals("Science Fiction", book2.getCategory());
@@ -52,7 +52,7 @@ public class BookDetailsBuilderTest {
                     .description("Tentang ilmuwan yang ingin memperbaiki kesalahnnya akibat mesin waktu")
                     .stock(2)
                     .publishDate("10-12-2015")
-                    .ISBN("111-111-1111-11-1")
+                    .isbn("111-111-1111-11-1")
                     .pages(250)
                     .coverPicture("https://m.media-amazon.com/images/M/MV5BMjUxMzE4ZDctODNjMS00MzIwLThjNDktODkwYjc5YWU0MDc0XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_FMjpg_UX1000_.jpg")
                     .category("Science Fiction")
@@ -74,7 +74,7 @@ public class BookDetailsBuilderTest {
                     .description("Tentang ilmuwan yang ingin memperbaiki kesalahnnya akibat mesin waktu")
                     .stock(-2)
                     .publishDate("10-12-2015")
-                    .ISBN("111-111-1111-11-1")
+                    .isbn("111-111-1111-11-1")
                     .pages(250)
                     .coverPicture("https://m.media-amazon.com/images/M/MV5BMjUxMzE4ZDctODNjMS00MzIwLThjNDktODkwYjc5YWU0MDc0XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_FMjpg_UX1000_.jpg")
                     .category("Science Fiction")
@@ -96,7 +96,7 @@ public class BookDetailsBuilderTest {
                     .description("Tentang ilmuwan yang ingin memperbaiki kesalahnnya akibat mesin waktu")
                     .stock(2)
                     .publishDate("10-12-2015")
-                    .ISBN("111-111-1111-11-1")
+                    .isbn("111-111-1111-11-1")
                     .pages(-1)
                     .coverPicture("https://m.media-amazon.com/images/M/MV5BMjUxMzE4ZDctODNjMS00MzIwLThjNDktODkwYjc5YWU0MDc0XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_FMjpg_UX1000_.jpg")
                     .category("Science Fiction")
@@ -118,7 +118,7 @@ public class BookDetailsBuilderTest {
                     .description("Tentang ilmuwan yang ingin memperbaiki kesalahnnya akibat mesin waktu")
                     .stock(2)
                     .publishDate("10-12-2015")
-                    .ISBN("111-111-1111-11-1")
+                    .isbn("111-111-1111-11-1")
                     .pages(250)
                     .coverPicture("https://m.media-amazon.com/images/M/MV5BMjUxMzE4ZDctODNjMS00MzIwLThjNDktODkwYjc5YWU0MDc0XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_FMjpg_UX1000_.jpg")
                     .category("Science Fiction")
@@ -140,7 +140,7 @@ public class BookDetailsBuilderTest {
                     .description("Tentang ilmuwan yang ingin memperbaiki kesalahnnya akibat mesin waktu")
                     .stock(0)
                     .publishDate("10-12-2015")
-                    .ISBN("111-111-1111-11-1")
+                    .isbn("111-111-1111-11-1")
                     .pages(250)
                     .coverPicture("https://m.media-amazon.com/images/M/MV5BMjUxMzE4ZDctODNjMS00MzIwLThjNDktODkwYjc5YWU0MDc0XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_FMjpg_UX1000_.jpg")
                     .category("Science Fiction")
@@ -162,7 +162,7 @@ public class BookDetailsBuilderTest {
                     .description("Tentang ilmuwan yang ingin memperbaiki kesalahnnya akibat mesin waktu")
                     .stock(2)
                     .publishDate("10-12-2015")
-                    .ISBN("111-111-1111-11-1")
+                    .isbn("111-111-1111-11-1")
                     .pages(0)
                     .coverPicture("https://m.media-amazon.com/images/M/MV5BMjUxMzE4ZDctODNjMS00MzIwLThjNDktODkwYjc5YWU0MDc0XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_FMjpg_UX1000_.jpg")
                     .category("Science Fiction")
