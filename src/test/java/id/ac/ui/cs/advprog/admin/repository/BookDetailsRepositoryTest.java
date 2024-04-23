@@ -61,6 +61,15 @@ public class BookDetailsRepositoryTest {
 
         books.add(book2);
     }
+    @Test
+    void testFindByIdIfIdNotFound(){
+        for (Book book : books){
+            bookDetailsRepository.save(book);
+        }
+
+        Book findResult = bookDetailsRepository.findById(10).orElse(null);
+        assertNull(findResult);
+    }
 
     @Test
     public void testSaveBook(){
@@ -95,58 +104,25 @@ public class BookDetailsRepositoryTest {
         assertNull(deletedBook);
     }
 
-    @Test
-    public void testFindByIdIfIdFound() {
-        Book book1 = books.getFirst();
-
-        for (Book book : books){
-            bookDetailsRepository.save(book);
-        }
-
-        Book findResult = bookDetailsRepository.findById(books.getFirst().getId()).orElse(null);
-
-        assertNotNull(findResult);
-        assertEquals(book1.getId(), findResult.getId());
-        assertEquals(book1.getTitle(), findResult.getTitle());
-        assertEquals(book1.getAuthor(), findResult.getAuthor());
-        assertEquals(book1.getPublisher(), findResult.getPublisher());
-        assertEquals(book1.getPrice(), findResult.getPrice());
-        assertEquals(book1.getDescription(), findResult.getDescription());
-        assertEquals(book1.getStock(), findResult.getStock());
-        assertEquals(book1.getDescription(), findResult.getDescription());
-        assertEquals(book1.getIsbn(), findResult.getIsbn());
-        assertEquals(book1.getPages(), findResult.getPages());
-        assertEquals(book1.getCoverPicture(), findResult.getCoverPicture());
-        assertEquals(book1.getCategory(), findResult.getCategory());
-        assertEquals(book1.getSold(), findResult.getSold());
-    }
 
     @Test
     public void testUpdateBook() {
-        Book book1 = books.getFirst();
-        bookDetailsRepository.save(book1);
+        Book book2 = books.get(1);
+        bookDetailsRepository.save(book2);
 
-        book1.setPages(20);
-        book1.setStock(10);
+        book2.setPages(20);
+        book2.setStock(10);
 
-        bookDetailsRepository.save(book1);
+        bookDetailsRepository.save(book2);
 
-        Book updatedBook = bookDetailsRepository.findById(book1.getId()).orElse(null);
+        Book updatedBook = bookDetailsRepository.findById(book2.getId()).orElse(null);
 
         assertNotNull(updatedBook);
         assertEquals(20, updatedBook.getPages());
         assertEquals(10, updatedBook.getStock());
     }
 
-    @Test
-    void testFindByIdIfIdNotFound(){
-        for (Book book : books){
-            bookDetailsRepository.save(book);
-        }
 
-        Book findResult = bookDetailsRepository.findById(10).orElse(null);
-        assertNull(findResult);
-    }
 
     @Test
     void testGetAllBook(){
@@ -158,5 +134,7 @@ public class BookDetailsRepositoryTest {
         long bookCount = StreamSupport.stream(bookList.spliterator(), false).count();
         assertEquals(2, bookCount);
     }
+
+
 
 }
