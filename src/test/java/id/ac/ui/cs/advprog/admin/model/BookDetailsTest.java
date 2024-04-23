@@ -14,7 +14,7 @@ public class BookDetailsTest {
     @BeforeEach
     public void setUp(){
         this.book1 = new BookBuilder()
-                .bookId("abcd")
+                .bookId(1L)
                 .title("Steins Gate")
                 .author("Taka Himeno")
                 .publisher("Nitroplus")
@@ -32,7 +32,7 @@ public class BookDetailsTest {
 
     @Test
     void testGetDetailsBook(){
-        assertEquals("abcd", book1.getId());
+        assertEquals(1L, book1.getId());
         assertEquals("Steins Gate", book1.getTitle());
         assertEquals("Taka Himeno", book1.getAuthor());
         assertEquals("Nitroplus", book1.getPublisher());
@@ -62,7 +62,7 @@ public class BookDetailsTest {
         book1.setSold(2);
 
 
-        assertEquals("abcd", book1.getId());
+        assertEquals(1L, book1.getId());
         assertEquals("Steins Gate", book1.getTitle());
         assertEquals("Taka Himeno", book1.getAuthor());
         assertEquals("5pb", book1.getPublisher());
