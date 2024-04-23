@@ -1,7 +1,7 @@
 package id.ac.ui.cs.advprog.admin.model;
 
 public class BookBuilder {
-    private Long bookId;
+    private int bookId;
     private String title;
     private String author;
     private String publisher;
@@ -15,7 +15,7 @@ public class BookBuilder {
     private String category;
     private int sold;
 
-    public BookBuilder bookId(Long bookId){
+    public BookBuilder bookId(int bookId){
         this.bookId = bookId;
         return this;
     }
@@ -81,7 +81,7 @@ public class BookBuilder {
     }
 
     public Book build(){
-        if (bookId == null || title == null || author == null || publisher == null || price <= 0 || description == null || stock <= 0
+        if (title == null || author == null || publisher == null || price <= 0 || description == null || stock <= 0
                 || publishDate == null || ISBN == null || pages <= 0 || coverPicture == null || category == null || sold < 0) {
             throw new IllegalArgumentException();
         }
