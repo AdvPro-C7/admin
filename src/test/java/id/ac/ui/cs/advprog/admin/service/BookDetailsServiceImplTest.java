@@ -70,7 +70,7 @@ public class BookDetailsServiceImplTest {
                 .pages(250)
                 .coverPicture("https://m.media-amazon.com/images/M/MV5BMjUxMzE4ZDctODNjMS00MzIwLThjNDktODkwYjc5YWU0MDc0XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_FMjpg_UX1000_.jpg")
                 .category("Science Fiction")
-                .sold(0)
+                .sold(10)
                 .build();
 
         books.add(book2);
@@ -114,15 +114,28 @@ public class BookDetailsServiceImplTest {
     }
 
     @Test
-    void testDeleteBook(){
+    void testDeleteBookIfNeverSold(){
         Book book1 = books.getFirst();
 
+        doReturn(Optional.of(book1)).when(bookDetailsRepository).findById(book1.getId());
+
         bookDetailsService.createBook(book1);
-        bookDetailsService.deleteBook(book1);
+        Book deleteBook = bookDetailsService.deleteBook(book1);
 
-        Optional<Book> result = bookDetailsService.findById(book1.getId());
+        assertNotNull(deleteBook);
 
-        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testDeleteBookIfSoldMoreThanZero(){
+        Book book2 = books.get(1);
+
+        doReturn(Optional.of(book2)).when(bookDetailsRepository).findById(book2.getId());
+
+        bookDetailsService.createBook(book2);
+
+        assertThrows(IllegalStateException.class,
+                () -> bookDetailsService.deleteBook(book2));
 
     }
 
@@ -288,8 +301,5 @@ public class BookDetailsServiceImplTest {
                 () -> bookDetailsService.updateDataBook(100, updatedBook));
 
     }
-
-
-
 
 }
