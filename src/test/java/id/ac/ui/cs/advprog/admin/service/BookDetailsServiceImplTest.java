@@ -120,7 +120,7 @@ public class BookDetailsServiceImplTest {
         doReturn(Optional.of(book1)).when(bookDetailsRepository).findById(book1.getId());
 
         bookDetailsService.createBook(book1);
-        Book deleteBook = bookDetailsService.deleteBook(book1);
+        Book deleteBook = bookDetailsService.deleteBook(book1.getId());
 
         assertNotNull(deleteBook);
 
@@ -135,7 +135,7 @@ public class BookDetailsServiceImplTest {
         bookDetailsService.createBook(book2);
 
         assertThrows(IllegalStateException.class,
-                () -> bookDetailsService.deleteBook(book2));
+                () -> bookDetailsService.deleteBook(book2.getId()));
 
     }
 
