@@ -7,6 +7,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -55,11 +56,18 @@ public class BookDetailsServiceImpl implements BookDetailsService{
 
     @Override
     public Book deleteBook(Book book){
-        if(bookDetailsRepository.findById(book.getId()).isPresent()){
-            bookDetailsRepository.delete(book);
-            return book;
+        Optional<Book> findBook = bookDetailsRepository.findById(book.getId());
+        if(findBook.isPresent()) {
+            Book existingBook = findBook.get();
+            if (existingBook.getSold() == 0) {
+                bookDetailsRepository.delete(existingBook);
+                return existingBook;
+            } else {
+                throw new IllegalStateException("Book with ID " + existingBook.getId() + " has been sold and cannot be deleted.");
+            }
+        } else {
+            return null;
         }
-        return null;
     }
 
 }
