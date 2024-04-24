@@ -9,5 +9,5 @@ public interface BookDetailsService {
     public Book createBook(Book book);
     public Book updateDataBook(int id, Book book);
     public Optional<Book> findById(int id);
-    public Book deleteBook(Book book);
+    public Book deleteBook(int id);
 }

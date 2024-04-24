@@ -55,8 +55,8 @@ public class BookDetailsServiceImpl implements BookDetailsService{
     }
 
     @Override
-    public Book deleteBook(Book book){
-        Optional<Book> findBook = bookDetailsRepository.findById(book.getId());
+    public Book deleteBook(int id){
+        Optional<Book> findBook = bookDetailsRepository.findById(id);
         if(findBook.isPresent()) {
             Book existingBook = findBook.get();
             if (existingBook.getSold() == 0) {
