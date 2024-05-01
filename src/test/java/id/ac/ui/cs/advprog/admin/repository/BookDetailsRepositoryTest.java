@@ -3,7 +3,7 @@ package id.ac.ui.cs.advprog.admin.repository;
 import static org.junit.jupiter.api.Assertions.*;
 
 import id.ac.ui.cs.advprog.admin.model.Book;
-import id.ac.ui.cs.advprog.admin.model.BookBuilder;
+import id.ac.ui.cs.advprog.admin.model.BookBuilderImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class BookDetailsRepositoryTest {
     public void setUp(){
         books = new ArrayList<>();
 
-        Book book1 = new BookBuilder()
+        Book book1 = new BookBuilderImpl()
                 .bookId(1)
                 .title("Steins Gate 0")
                 .author("Taka Himeno")
@@ -43,7 +43,7 @@ public class BookDetailsRepositoryTest {
 
         books.add(book1);
 
-        Book book2 = new BookBuilder()
+        Book book2 = new BookBuilderImpl()
                 .bookId(2)
                 .title("Steins Gate")
                 .author("Taka Himeno")

@@ -1,13 +1,11 @@
 package id.ac.ui.cs.advprog.admin.service;
 
 import id.ac.ui.cs.advprog.admin.model.Book;
-import id.ac.ui.cs.advprog.admin.model.BookBuilder;
 import id.ac.ui.cs.advprog.admin.repository.BookDetailsRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service

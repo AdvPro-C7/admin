@@ -13,7 +13,7 @@ public class BookDetailsTest {
 
     @BeforeEach
     public void setUp(){
-        this.book1 = new BookBuilder()
+        this.book1 = new BookBuilderImpl()
                 .bookId(1)
                 .title("Steins Gate")
                 .author("Taka Himeno")
