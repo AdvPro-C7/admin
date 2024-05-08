@@ -1,3 +1,6 @@
+package id.ac.ui.cs.advprog.admin.controller;
+import id.ac.ui.cs.advprog.admin.model.Buku;
+import id.ac.ui.cs.advprog.admin.repository.BukuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +22,7 @@ public class BukuController {
 
     @PostMapping
     public ResponseEntity<Buku> addBuku(@RequestBody Buku buku) {
-        Buku savedBuku = bukuRepository.save(buku);
+        Buku savedBuku = (Buku) bukuRepository.save(buku);
         return new ResponseEntity<>(savedBuku, HttpStatus.CREATED);
     }
 

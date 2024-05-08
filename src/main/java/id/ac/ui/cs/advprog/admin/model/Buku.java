@@ -5,13 +5,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Customer {
+public class Buku {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String email;
-    private String phoneNumber;
+    private String judul;
+    private String author;
+    private String publisher;
+    private Long harga;
 
 }
