@@ -32,7 +32,7 @@ public class BookDetailsController {
     public ResponseEntity createBook(@RequestBody Book book){
         ResponseEntity responseEntity = null;
         try {
-            bookDetailsService.createBook(book);
+            bookDetailsService.createBookAsync(book);
             responseEntity = ResponseEntity.ok().build();
         } catch (Exception e) {
             responseEntity = ResponseEntity.badRequest().body(HttpStatus.INTERNAL_SERVER_ERROR);

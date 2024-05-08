@@ -4,7 +4,9 @@ import id.ac.ui.cs.advprog.admin.model.Book;
 import id.ac.ui.cs.advprog.admin.repository.BookDetailsRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import java.util.concurrent.CompletableFuture;
 
 import java.util.Optional;
 
@@ -14,14 +16,18 @@ public class BookDetailsServiceImpl implements BookDetailsService{
     @Autowired
     BookDetailsRepository bookDetailsRepository;
 
+    @Async
     @Override
-    public Book createBook(Book book){
-        if(bookDetailsRepository.findById(book.getId()).isEmpty()){
-            bookDetailsRepository.save(book);
-            return book;
+    public CompletableFuture<Book> createBookAsync(Book book) {
+        // Cek apakah buku dengan ID yang sama sudah ada
+        if (bookDetailsRepository.findById(book.getId()).isEmpty()) {
+            // Simpan buku secara asynchronous
+            Book savedBook = bookDetailsRepository.save(book);
+            return CompletableFuture.completedFuture(savedBook);
+        } else {
+            // Jika buku dengan ID yang sama sudah ada, kembalikan null
+            return CompletableFuture.completedFuture(null);
         }
-
-        return null;
     }
 
     @Override

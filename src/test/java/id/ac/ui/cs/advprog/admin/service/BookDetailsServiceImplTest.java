@@ -14,6 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -79,9 +81,17 @@ public class BookDetailsServiceImplTest {
         Book book1 = books.getFirst();
         doReturn(book1).when(bookDetailsRepository).save(book1);
 
-        Book result = bookDetailsService.createBook(book1);
-        verify(bookDetailsRepository, times(1)).save(book1);
-        assertEquals(book1.getId(), result.getId());
+        CompletableFuture<Book> saveBook = bookDetailsService.createBookAsync(book1);
+
+        try {
+            Book result = saveBook.get();
+            verify(bookDetailsRepository, times(1)).save(book1);
+            assertEquals(book1.getId(), result.getId());
+        } catch (Exception e) {
+            throw new AssertionError("Test failed due to unhandled exception");
+        }
+
+
     }
 
     @Test
@@ -89,8 +99,15 @@ public class BookDetailsServiceImplTest {
         Book book2 = books.get(1);
         doReturn(Optional.of(book2)).when(bookDetailsRepository).findById(book2.getId());
 
-        assertNull(bookDetailsService.createBook(book2));
-        verify(bookDetailsRepository, times(0)).save(book2);
+        CompletableFuture<Book> saveBook = bookDetailsService.createBookAsync(book2);
+
+        try {
+            Book result = saveBook.get();
+            assertNull(result); // Memastikan bahwa hasil CompletableFuture adalah null
+            verify(bookDetailsRepository, times(0)).save(book2);
+        } catch (Exception e) {
+            fail("Test failed due to unhandled exception: " + e.getMessage());
+        }
     }
 
     @Test
@@ -117,7 +134,7 @@ public class BookDetailsServiceImplTest {
 
         doReturn(Optional.of(book1)).when(bookDetailsRepository).findById(book1.getId());
 
-        bookDetailsService.createBook(book1);
+        bookDetailsService.createBookAsync(book1);
         Book deleteBook = bookDetailsService.deleteBook(book1.getId());
 
         assertNotNull(deleteBook);
@@ -130,7 +147,7 @@ public class BookDetailsServiceImplTest {
 
         doReturn(Optional.of(book2)).when(bookDetailsRepository).findById(book2.getId());
 
-        bookDetailsService.createBook(book2);
+        bookDetailsService.createBookAsync(book2);
 
         assertThrows(IllegalStateException.class,
                 () -> bookDetailsService.deleteBook(book2.getId()));
