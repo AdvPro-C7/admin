@@ -1,57 +1,36 @@
 package id.ac.ui.cs.advprog.admin.services;
 import id.ac.ui.cs.advprog.admin.repository.BukuRepository;
 import id.ac.ui.cs.advprog.admin.model.Buku;
-import id.ac.ui.cs.advprog.admin.exception.ResourceNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.stream.Collectors;
 import java.util.List;
+import java.util.Optional;
 
-public class BukuServiceImpl {
+@Service
+public class BukuServiceImpl implements BukuService {
 
         @Autowired
         private BukuRepository bukuRepository;
 
-        @Autowired
-        private BukuConverter bukuConverter;
-
         @Override
-        public List<BukuDTO> getAllBuku() {
-            List<Buku> buku = bukuRepository.findAll();
-            return buku.stream()
-                    .map(bukuConverter::toDTO)
-                    .collect(Collectors.toList());
+        public List<Buku> getAllBuku() {
+            return bukuRepository.findAll();
         }
 
         @Override
-        public BukuDTO getBukuById(Long id) {
-            Buku buku = bukuRepository.findById(id);
-            return bukuConverter.toDTO(buku);
+         public Buku getBukuById(int id) {
+            Optional<Buku> bukuOptional = bukuRepository.findById(id);
+                return bukuOptional.orElse(null);
         }
 
-        @Override
-        public BukuDTO createBuku(BukuPayload payload) {
-            Buku buku = bukuConverter.toEntity(payload);
-            Buku savedBuku = bukuRepository.save(buku);
-            return bukuConverter.toDTO(savedBuku);
+    @Override
+        public Buku saveOrUpdateBuku(Buku buku) {
+            return (Buku) bukuRepository.save(buku);
         }
 
-        @Override
-        public BukuDTO updateBuku(Long id, BukuPayload payload) {
-            Buku DatabaseBuku = bukuRepository.findById(id);
-            DatabaseBuku.setJudul(payload.getJudul());
-            DatabaseBuku.setAuthor(payload.getAuthor());
-            DatabaseBuku.setPublisher(payload.getPublisher());
-            DatabaseBuku.setHarga(payload.getHarga());
-            Buku updatedBuku = bukuRepository.save(DatabaseBuku);
-            return bukuConverter.toDTO(updatedBuku);
+    @Override
+        public void deleteBuku(int id) {
+            bukuRepository.deleteById(id);
         }
-
-        @Override
-        public void deleteBuku(Long id) {
-            Buku buku = bukuRepository.findById(id);
-            bukuRepository.delete(buku);
-        }
-    }
+}
 
