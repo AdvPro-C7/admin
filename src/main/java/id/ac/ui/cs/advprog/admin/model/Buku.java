@@ -32,4 +32,16 @@ public abstract class Buku {
     @Column(name = "harga")
     double price;
 
+    public Buku(int id, String judul, String author, String publisher, double price) {
+        this.id = id;
+        this.judul = judul;
+        this.author = author;
+        this.publisher = publisher;
+        this.price = price;
+    }
+
+    public abstract Buku bookId(int bookId);
+
+    public abstract Buku judul(String judul);
+
 }
