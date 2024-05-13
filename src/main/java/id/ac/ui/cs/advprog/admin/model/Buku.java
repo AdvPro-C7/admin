@@ -1,18 +1,35 @@
 package id.ac.ui.cs.advprog.admin.model;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
-public class Buku {
 
+@Table(name = "Buku", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"judul", "author"})
+})
+
+public abstract class Buku {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String judul;
-    private String author;
-    private String publisher;
-    private Long harga;
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    @Column(name = "id", updatable = false, nullable = false)
+    int id;
+
+    @Column(name = "judul", updatable = false, nullable = false)
+    @Setter(AccessLevel.NONE)
+    String judul;
+
+    @Column(name = "author", updatable = false, nullable = false)
+    @Setter(AccessLevel.NONE)
+    String author;
+
+    @Column(name = "publisher", nullable = false)
+    String publisher;
+
+    @Column(name = "harga")
+    double price;
 
 }
