@@ -1,11 +1,15 @@
 package id.ac.ui.cs.advprog.admin.model;
 
-public class BukuImpl implements buku {
+public class BukuImpl extends Buku {
     private int bookId;
     private String judul;
     private String author;
     private String publisher;
     private double harga;
+
+    public BukuImpl(int id, String judul, String author, String publisher, double price) {
+        super(id, judul, author, publisher, price);
+    }
 
     @Override
     public Buku bookId(int bookId){

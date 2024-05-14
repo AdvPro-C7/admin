@@ -8,13 +8,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/buku")
-public class BukuController<BukuDTO> {
+    public class BukuController<BukuDTO> {
     @Autowired
     private BukuService bukuService;
 
     @GetMapping("/")
     public List<BukuDTO> getAllBuku() {
-        return bukuService.getAllBuku();
+        return (List<BukuDTO>) (List<BukuDTO>) bukuService.getAllBuku();
     }
 
     @GetMapping("/{id}")
@@ -29,6 +29,6 @@ public class BukuController<BukuDTO> {
 
     @DeleteMapping("/{id}")
     public void deleteBuku(@PathVariable int id) {
-        bukuService.deleteBuku((long) id);
+        bukuService.deleteBuku((int) id);
     }
 }

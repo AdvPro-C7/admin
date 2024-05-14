@@ -1,15 +1,14 @@
 package id.ac.ui.cs.advprog.admin.services;
 import id.ac.ui.cs.advprog.admin.model.Customer;
-import id.ac.ui.cs.advprog.admin.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
 public class CustomerServiceImpl implements CustomerService {
 
         @Autowired
-        private CustomerRepository customerRepository;
+        private id.ac.ui.cs.advprog.admin.dto.CustomerRepository customerRepository;
 
         @Override
         public List<Customer> getAllCustomers() {
@@ -18,7 +17,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         @Override
         public Customer getCustomerById(int id) {
-            Optional<Customer> customerOptional = customerRepository.findById(id);
+            Optional<Customer> customerOptional = customerRepository.findById((long) id);
             return customerOptional.orElse(null);
         }
 
@@ -29,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         @Override
         public void deleteCustomer(int id) {
-            customerRepository.deleteById(id);
+            customerRepository.deleteById((long) id);
         }
     }
 

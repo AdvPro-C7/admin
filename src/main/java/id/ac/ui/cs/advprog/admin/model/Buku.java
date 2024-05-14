@@ -44,4 +44,9 @@ public abstract class Buku {
 
     public abstract Buku judul(String judul);
 
+    public abstract Buku author(String author);
+
+    public abstract Buku publisher(String publisher);
+
+    public abstract Buku price(int harga);
 }
