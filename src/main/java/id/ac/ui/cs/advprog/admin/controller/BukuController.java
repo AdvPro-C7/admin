@@ -8,27 +8,27 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/buku")
-    public class BukuController<BukuDTO> {
+    public class BukuController {
     @Autowired
     private BukuService bukuService;
 
     @GetMapping("/")
-    public List<BukuDTO> getAllBuku() {
-        return (List<BukuDTO>) (List<BukuDTO>) bukuService.getAllBuku();
+    public CompletableFuture<ResponseEntity<List<Buku>>> getAllBuku() {
+        return bukuService.getAllBuku().thenApply(ResponseEntity::ok);
     }
 
     @GetMapping("/{id}")
-    public Buku getBukuById(@PathVariable int id) {
-        return bukuService.getBukuById(id);
+    public CompletableFuture<ResponseEntity<Buku>> getBukuById(@PathVariable int id) {
+        return bukuService.getBukuById(id).thenApply(buku -> buku != null ? ResponseEntity.ok(buku) : ResponseEntity.notFound().build());
     }
 
     @PostMapping("/")
-    public Buku saveOrUpdateBuku(@RequestBody Buku buku) {
-        return bukuService.saveOrUpdateBuku(buku);
+    public CompletableFuture<ResponseEntity<Buku>> saveOrUpdateBuku(@RequestBody Buku buku) {
+        return bukuService.saveOrUpdateBuku(buku).thenApply(ResponseEntity::ok);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteBuku(@PathVariable int id) {
-        bukuService.deleteBuku((int) id);
+    public CompletableFuture<ResponseEntity<Void>> deleteBuku(@PathVariable int id) {
+        return bukuService.deleteBuku(id).thenApply(v -> ResponseEntity.noContent().build());
     }
 }

@@ -14,22 +14,23 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("/")
-    public List<Customer> getAllCustomers() {
-        return customerService.getAllCustomers();
+    public CompletableFuture<ResponseEntity<List<Customer>>> getAllCustomers() {
+        return customerService.getAllCustomers().thenApply(ResponseEntity::ok);
     }
 
     @GetMapping("/{id}")
-    public Customer getCustomerById(@PathVariable int id) {
-        return customerService.getCustomerById(id);
+    public CompletableFuture<ResponseEntity<Customer>> getCustomerById(@PathVariable int id) {
+        return customerService.getCustomerById(id).thenApply(customer ->
+                customer != null ? ResponseEntity.ok(customer) : ResponseEntity.notFound().build());
     }
 
     @PostMapping("/")
-    public Customer saveOrUpdateCustomer(@RequestBody Customer customer) {
-        return customerService.saveOrUpdateCustomer(customer);
+    public CompletableFuture<ResponseEntity<Customer>> saveOrUpdateCustomer(@RequestBody Customer customer) {
+        return customerService.saveOrUpdateCustomer(customer).thenApply(ResponseEntity::ok);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCustomer(@PathVariable int id) {
-        customerService.deleteCustomer(id);
+    public CompletableFuture<ResponseEntity<Void>> deleteCustomer(@PathVariable int id) {
+        return customerService.deleteCustomer(id).thenApply(v -> ResponseEntity.noContent().build());
     }
 }
