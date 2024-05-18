@@ -32,6 +32,7 @@ public class Buku {
     @Column(name = "harga")
     private double price;
 
+    //REFRACTOR: BUILDER DESIGN PATTERN for demo
     public Buku(Builder builder) {
         this.id = id;
         this.judul = judul;

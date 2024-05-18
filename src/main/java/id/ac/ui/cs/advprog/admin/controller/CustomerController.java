@@ -13,7 +13,7 @@ import java.util.concurrent.CompletableFuture;
 public class CustomerController {
 
     @Autowired
-    private CustomerService customerService;
+    public CustomerService customerService;
 
     @GetMapping("/")
     public CompletableFuture<ResponseEntity<List<Customer>>> getAllCustomers() {
