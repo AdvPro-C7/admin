@@ -16,23 +16,23 @@ public abstract class Buku {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
-    int id;
+    private int id;
 
     @Column(name = "judul", updatable = false, nullable = false)
     @Setter(AccessLevel.NONE)
-    String judul;
+    private String judul;
 
     @Column(name = "author", updatable = false, nullable = false)
     @Setter(AccessLevel.NONE)
-    String author;
+    private String author;
 
     @Column(name = "publisher", nullable = false)
-    String publisher;
+    private String publisher;
 
     @Column(name = "harga")
-    double price;
+    private double price;
 
-    public Buku(int id, String judul, String author, String publisher, double price) {
+    public Buku(Builder builder) {
         this.id = id;
         this.judul = judul;
         this.author = author;
@@ -40,13 +40,41 @@ public abstract class Buku {
         this.price = price;
     }
 
-    public abstract Buku bookId(int bookId);
+    public static class Builder {
+        private int id;
+        private String judul;
+        private String author;
+        private String publisher;
+        private double price;
 
-    public abstract Buku judul(String judul);
+        public Builder id(int id) {
+            this.id = id;
+            return this;
+        }
 
-    public abstract Buku author(String author);
+        public Builder judul(String judul) {
+            this.judul = judul;
+            return this;
+        }
 
-    public abstract Buku publisher(String publisher);
+        public Builder author(String author) {
+            this.author = author;
+            return this;
+        }
 
-    public abstract Buku price(int harga);
+        public Builder publisher(String publisher) {
+            this.publisher = publisher;
+            return this;
+        }
+
+        public Builder price(double price) {
+            this.price = price;
+            return this;
+        }
+
+        public Buku build() {
+            return new Buku(this);
+        }
+    }
+
 }
