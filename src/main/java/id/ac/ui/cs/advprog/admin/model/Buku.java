@@ -12,7 +12,7 @@ import lombok.Setter;
         @UniqueConstraint(columnNames = {"judul", "author"})
 })
 
-public abstract class Buku {
+public class Buku {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
