@@ -1,5 +1,8 @@
 package id.ac.ui.cs.advprog.admin.services;
 import id.ac.ui.cs.advprog.admin.model.Customer;
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import id.ac.ui.cs.advprog.admin.repository.CustomerRepository;
 import java.util.concurrent.CompletableFuture;
 import java.util.List;
 

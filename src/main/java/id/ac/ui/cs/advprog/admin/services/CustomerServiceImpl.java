@@ -10,6 +10,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+@Service
 public class CustomerServiceImpl implements CustomerService {
 
         @Autowired
