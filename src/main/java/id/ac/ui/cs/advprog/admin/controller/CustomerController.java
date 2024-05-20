@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 @RestController
 @RequestMapping("/api/customer")
 public class CustomerController {
 
     @Autowired
-    public CustomerService customerService;
+    private CustomerService customerService;
 
     @GetMapping("/")
     public CompletableFuture<ResponseEntity<List<Customer>>> getAllCustomers() {
@@ -34,5 +35,10 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     public CompletableFuture<ResponseEntity<Void>> deleteCustomer(@PathVariable int id) {
         return customerService.deleteCustomer(id).thenApply(v -> ResponseEntity.noContent().build());
+    }
+
+    @PostMapping("/{id}/warn")
+    public CompletionStage<ResponseEntity<Object>> giveWarning(@PathVariable int id) {
+        return customerService.giveWarning(id).thenApply(v -> ResponseEntity.noContent().build());
     }
 }

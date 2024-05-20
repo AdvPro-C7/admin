@@ -32,16 +32,13 @@ public class Buku {
     @Column(name = "harga")
     private double price;
 
-    protected Buku() {
-    }
-
     //REFRACTOR: BUILDER DESIGN PATTERN for demo
-    public Buku(Builder builder) {
-        this.id = id;
-        this.judul = judul;
-        this.author = author;
-        this.publisher = publisher;
-        this.price = price;
+    private Buku(Builder builder) {
+        this.id = builder.id;
+        this.judul = builder.judul;
+        this.author = builder.author;
+        this.publisher = builder.publisher;
+        this.price = builder.price;
     }
 
     public static class Builder {
