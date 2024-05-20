@@ -1,4 +1,5 @@
 package id.ac.ui.cs.advprog.admin.model;
+
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -7,14 +8,12 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-
 @Table(name = "Buku", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"judul", "author"})
 })
-
 public class Buku {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
@@ -32,7 +31,6 @@ public class Buku {
     @Column(name = "harga")
     private double price;
 
-    //REFRACTOR: BUILDER DESIGN PATTERN for demo
     private Buku(Builder builder) {
         this.id = builder.id;
         this.judul = builder.judul;
@@ -77,5 +75,4 @@ public class Buku {
             return new Buku(this);
         }
     }
-
 }
