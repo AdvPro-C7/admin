@@ -6,6 +6,7 @@ plugins {
     id("org.springframework.boot") version "3.2.4"
     id("io.spring.dependency-management") version "1.1.4"
     id("org.sonarqube") version "4.4.1.3373"
+    id("application")
 }
 
 group = "id.ac.ui.cs.advprog"
@@ -13,6 +14,11 @@ version = "0.0.1-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+application {
+    mainClass = "id.ac.ui.cs.advprog.admin.AdminApplication"
 }
 
 configurations {
@@ -27,7 +33,7 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    //implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
@@ -57,19 +63,3 @@ tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
 
-tasks.test {
-    filter {
-        excludeTestsMatching("*FunctionalTest")
-    }
-
-    finalizedBy(tasks.jacocoTestReport)
-}
-
-tasks.jacocoTestReport {
-    dependsOn(tasks.test)
-
-    reports {
-        html.required = true
-        xml.required = true
-    }
-}
