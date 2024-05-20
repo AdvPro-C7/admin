@@ -12,4 +12,5 @@ public interface CustomerService {
     CompletableFuture<Customer> getCustomerById(int id);
     CompletableFuture<Customer> saveOrUpdateCustomer(Customer customer);
     CompletableFuture<Void> deleteCustomer(int id);
+    CompletableFuture<Void> giveWarning(int id);
 }

@@ -5,39 +5,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
         @Autowired
         private CustomerRepository customerRepository;
-        private final Executor executor = Executors.newFixedThreadPool(10);
 
         @Override
         public CompletableFuture<List<Customer>> getAllCustomers() {
-            return CompletableFuture.supplyAsync(() -> customerRepository.findAll(), executor);
+            return CompletableFuture.supplyAsync(() -> customerRepository.findAll());
         }
 
         @Override
         public CompletableFuture<Customer> getCustomerById(int id) {
-            return CompletableFuture.supplyAsync(() -> {
-                Optional<Customer> customerOptional = customerRepository.findById((long) id);
-                return customerOptional.orElse(null);
-            }, executor);
+            return CompletableFuture.supplyAsync(() -> customerRepository.findById((long) id).orElse(null));
         }
 
         @Override
         public CompletableFuture<Customer> saveOrUpdateCustomer(Customer customer) {
-            return CompletableFuture.supplyAsync(() -> customerRepository.save(customer), executor);
+            return CompletableFuture.supplyAsync(() -> customerRepository.save(customer));
         }
 
         @Override
         public CompletableFuture<Void> deleteCustomer(int id) {
-            return CompletableFuture.runAsync(() -> customerRepository.deleteById((long) id), executor);
+            return CompletableFuture.runAsync(() -> customerRepository.deleteById((long) id));
         }
+
+    public CompletableFuture<Void> giveWarning(int customerId) {
+        return CompletableFuture.runAsync(() -> {
+            Customer customer = customerRepository.findById((long) customerId).orElse(null);
+            if (customer != null) {
+                int warningCount = customer.getWarningCount();
+                warningCount++;
+                customer.setWarningCount(warningCount);
+                if (warningCount >= 3) {
+                    customerRepository.deleteById((long) customerId);
+                } else {
+                    customerRepository.save(customer);
+                }
+            }
+        });
+      }
     }
 
