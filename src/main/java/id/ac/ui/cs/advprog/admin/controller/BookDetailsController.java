@@ -66,4 +66,29 @@ public class BookDetailsController {
         return responseEntity;
     }
 
+    @RequestMapping(value = "/api/book-checkout/{id}", method = RequestMethod.PUT)
+    public ResponseEntity checkOutBook(@PathVariable int id, @RequestBody Book book){
+        ResponseEntity responseEntity = null;
+        try {
+            bookDetailsService.checkOutBook(id, book);
+            responseEntity = ResponseEntity.ok().build();
+        } catch (Exception e){
+            responseEntity = ResponseEntity.badRequest().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return responseEntity;
+    }
+
+    @RequestMapping(value = "/api/book-details", method = RequestMethod.GET)
+    public ResponseEntity getAllBook(){
+        ResponseEntity responseEntity = null;
+        try {
+            Iterable<Book> book = bookDetailsService.findAllBooks();
+            responseEntity = ResponseEntity.ok(book);
+        } catch (Exception e){
+            responseEntity = ResponseEntity.badRequest().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+
 }
