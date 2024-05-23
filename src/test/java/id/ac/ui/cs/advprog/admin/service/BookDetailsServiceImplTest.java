@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -315,6 +316,62 @@ public class BookDetailsServiceImplTest {
         assertThrows(EntityNotFoundException.class,
                 () -> bookDetailsService.updateDataBook(100, updatedBook));
 
+    }
+
+    @Test
+    void testCheckOutBook() {
+        Book book1 = books.getFirst();
+
+        Book updatedBook = new BookBuilderImpl()
+                .bookId(book1.getId())
+                .title(book1.getTitle())
+                .author(book1.getAuthor())
+                .publisher("New Publisher")
+                .price(book1.getPrice())
+                .description(book1.getDescription())
+                .stock(book1.getStock() - 1)
+                .publishDate(book1.getPublishDate())
+                .isbn(book1.getIsbn())
+                .pages(book1.getPages())
+                .coverPicture(book1.getCoverPicture())
+                .category("Time travel")
+                .sold(book1.getSold() + 1)
+                .build();
+
+        doReturn(Optional.of(updatedBook)).when(bookDetailsRepository).findById(updatedBook.getId());
+
+        Book result = bookDetailsService.checkOutBook(book1.getId(), book1);
+
+        assertNotNull(result);
+        assertEquals(updatedBook.getSold(), result.getSold());
+        assertEquals(updatedBook.getStock(), result.getStock());
+
+    }
+
+    @Test
+    void testGetAllBookIfNotNull() {
+        Book book1 = books.getFirst();
+        Book book2 = books.getLast();
+
+        List<Book> books = Arrays.asList(book1, book2);
+
+        doReturn(books).when(bookDetailsRepository).findAll();
+
+        Iterable<Book> result = bookDetailsService.findAllBooks();
+
+        assertNotNull(result);
+        assertEquals(books.size(), 2);
+
+    }
+
+    @Test
+    void testGetAllBookIfNull() {
+
+        doReturn(null).when(bookDetailsRepository).findAll();
+
+        Iterable<Book> result = bookDetailsService.findAllBooks();
+
+        assertNull(result);
     }
 
 }

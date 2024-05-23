@@ -66,5 +66,4 @@ public class BookDetailsController {
         return responseEntity;
     }
 
-
 }
