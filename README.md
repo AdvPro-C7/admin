@@ -1,23 +1,29 @@
 # Diagram C7 - Buku.id
 
 - Context Diagram
-![Context Diagram](https://github.com/AdvPro-C7/admin/blob/main/Context%20Diagram%20C7.png?raw=true)
+![alt text](<images/Context Diagram C7.png>)
 
 - Container Diagram
-![Container Diagram](https://github.com/AdvPro-C7/admin/blob/main/Container%20Diagram.png?raw=true)
+![alt text](<images/Container Diagram Customer.png>)
 
 - Deployment Diagram
-![Deployment Diagram](https://github.com/AdvPro-C7/admin/blob/main/Deployment%20Diagram.png?raw=true)
+![alt text](<images/Deployment Diagram.png>)
 
 # Individual
-- Component Diagram - Admin Dashboard
-![Component Diagram](https://github.com/AdvPro-C7/admin/blob/main/Component%20Diagram-jose.jpg?raw=true)
-- Code Diagram - Admin Dashboard
-- ![Code Diagram](https://github.com/AdvPro-C7/admin/blob/main/Code%20Diagram-jose.jpg?raw=true)
+- Component Diagram - Jose (Admin Dashboard)
+![alt text](<images/Component Diagram-jose.jpg>)
+
+- Code Diagram - Jose (Admin Dashboard)
+![alt text](<images/Code Diagram-jose.jpg>)
 
 - Component Diagram - Athar (BookDetails)
-![Component diagram-athar.png](Component%20diagram-athar.png)
+![alt text](<images/Component diagram-athar.png>)
 
 - Code Diagram - Athar (BookDetails)
-![Code Diagram-athar.png](Code%20Diagram-athar.png)
+![alt text](<images/Code Diagram-athar.png>)
 
+- Component Diagram - Fikri (Booklist)
+![alt text](<images/Component Diagram-fikri.png>)
+
+- Code Diagram - Fikri (BookList)
+![alt text](<images/Code Diagram-fikri.png>) 
