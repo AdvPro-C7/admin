@@ -14,3 +14,10 @@
 ![Component Diagram](https://github.com/AdvPro-C7/admin/blob/main/Component%20Diagram-jose.jpg?raw=true)
 - Code Diagram - Admin Dashboard
 - ![Code Diagram](https://github.com/AdvPro-C7/admin/blob/main/Code%20Diagram-jose.jpg?raw=true)
+
+- Component Diagram - Athar (BookDetails)
+![Component diagram-athar.png](Component%20diagram-athar.png)
+
+- Code Diagram - Athar (BookDetails)
+![Code Diagram-athar.png](Code%20Diagram-athar.png)
+
