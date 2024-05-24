@@ -29,24 +29,53 @@ public class Customer {
 
     @Column(name = "warnings")
     private int warnings;
-    // Default constructor
-    public Customer() {}
 
-    // Constructor with parameters
-    public Customer(int id, String name, String email, int phoneNumber, int warnings) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.warnings = warnings;
+    protected Customer() {
     }
 
-    // Getter and setter for warnings (if needed)
-    public int getWarnings() {
-        return warnings;
+    private Customer(Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.email = builder.email;
+        this.phoneNumber = builder.phoneNumber;
+        this.warnings = builder.warnings;
     }
 
-    public void setWarnings(int warnings) {
-        this.warnings = warnings;
+    // Static Builder class
+    public static class Builder {
+        private int id;
+        private String name;
+        private String email;
+        private int phoneNumber;
+        private int warnings;
+
+        public Builder setId(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder setPhoneNumber(int phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public Builder setWarnings(int warnings) {
+            this.warnings = warnings;
+            return this;
+        }
+
+        public Customer build() {
+            return new Customer(this);
+        }
     }
 }
