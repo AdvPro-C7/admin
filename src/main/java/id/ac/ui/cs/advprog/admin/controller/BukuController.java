@@ -1,7 +1,7 @@
 package id.ac.ui.cs.advprog.admin.controller;
 
 import id.ac.ui.cs.advprog.admin.model.Buku;
-import id.ac.ui.cs.advprog.admin.services.BukuService;
+import id.ac.ui.cs.advprog.admin.service.BukuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

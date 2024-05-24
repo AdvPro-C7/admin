@@ -8,9 +8,7 @@ import lombok.Setter;
 @Setter
 @Entity
 
-@Table(name = "Customer", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"name", "email"})
-})
+@Table(name = "Customer")
 
 public class Customer {
     @Id
@@ -29,56 +27,26 @@ public class Customer {
     @Column(name = "phoneNumber")
     private int phoneNumber;
 
-    @Column(name = "warningCount")
-    private int warningCount;
+    @Column(name = "warnings")
+    private int warnings;
+    // Default constructor
+    public Customer() {}
 
-    public Customer() {
-        this.warningCount = 0;
+    // Constructor with parameters
+    public Customer(int id, String name, String email, int phoneNumber, int warnings) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.warnings = warnings;
     }
 
-    private Customer(Builder builder) {
-        this.id = builder.id;
-        this.name = builder.name;
-        this.email = builder.email;
-        this.phoneNumber = builder.phoneNumber;
-        this.warningCount = builder.warningCount;
+    // Getter and setter for warnings (if needed)
+    public int getWarnings() {
+        return warnings;
     }
 
-    public static class Builder {
-        private int id;
-        private String name;
-        private String email;
-        private int phoneNumber;
-        private int warningCount;
-
-        public Builder id(int id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder email(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public Builder phoneNumber(int phoneNumber) {
-            this.phoneNumber = phoneNumber;
-            return this;
-        }
-
-        public Builder warningCount(int warningCount) {
-            this.warningCount = warningCount;
-            return this;
-        }
-
-        public Customer build() {
-            return new Customer(this);
-        }
+    public void setWarnings(int warnings) {
+        this.warnings = warnings;
     }
-
 }

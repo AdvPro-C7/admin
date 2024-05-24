@@ -31,12 +31,14 @@ public class Buku {
     @Column(name = "harga")
     private double price;
 
-    private Buku(Builder builder) {
-        this.id = builder.id;
-        this.judul = builder.judul;
-        this.author = builder.author;
-        this.publisher = builder.publisher;
-        this.price = builder.price;
+    protected Buku() {}
+
+    public Buku(Builder builder) {
+        this.id = id;
+        this.judul = judul;
+        this.author = author;
+        this.publisher = publisher;
+        this.price = price;
     }
 
     public static class Builder {

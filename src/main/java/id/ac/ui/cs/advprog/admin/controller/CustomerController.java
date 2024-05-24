@@ -1,13 +1,12 @@
 package id.ac.ui.cs.advprog.admin.controller;
 import id.ac.ui.cs.advprog.admin.model.Customer;
-import id.ac.ui.cs.advprog.admin.services.CustomerService;
+import id.ac.ui.cs.advprog.admin.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
 
 @RestController
 @RequestMapping("/api/customer")
@@ -37,8 +36,17 @@ public class CustomerController {
         return customerService.deleteCustomer(id).thenApply(v -> ResponseEntity.noContent().build());
     }
 
-    @PostMapping("/{id}/warn")
-    public CompletionStage<ResponseEntity<Object>> giveWarning(@PathVariable int id) {
-        return customerService.giveWarning(id).thenApply(v -> ResponseEntity.noContent().build());
+    @PostMapping("/warn/{id}")
+    public CompletableFuture<ResponseEntity<Customer>> warnCustomer(@PathVariable int id) {
+        return customerService.getCustomerById(id).thenCompose(customer -> {
+            if (customer == null) {
+                return CompletableFuture.completedFuture(ResponseEntity.notFound().build());
+            }
+            customer.setWarnings(customer.getWarnings() + 1);
+            if (customer.getWarnings() >= 3) {
+                // Implement account blocking logic
+            }
+            return customerService.saveOrUpdateCustomer(customer).thenApply(ResponseEntity::ok);
+        });
     }
 }
