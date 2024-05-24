@@ -9,3 +9,8 @@
 - Deployment Diagram
 ![Deployment Diagram](https://github.com/AdvPro-C7/admin/blob/main/Deployment%20Diagram.png?raw=true)
 
+# Individual
+- Component Diagram - Admin Dashboard
+![Component Diagram](https://github.com/AdvPro-C7/admin/blob/main/Component%20Diagram-jose.jpg?raw=true)
+- Code Diagram - Admin Dashboard
+- ![Code Diagram](https://github.com/AdvPro-C7/admin/blob/main/Code%20Diagram-jose.jpg?raw=true)
