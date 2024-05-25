@@ -43,10 +43,8 @@ public class CustomerController {
                 return CompletableFuture.completedFuture(ResponseEntity.notFound().build());
             }
             customer.setWarnings(customer.getWarnings() + 1);
-            if (customer.getWarnings() >= 3) {
-                // Implement account blocking logic
-            }
             return customerService.saveOrUpdateCustomer(customer).thenApply(ResponseEntity::ok);
         });
+
     }
 }
