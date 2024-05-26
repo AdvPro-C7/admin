@@ -58,18 +58,19 @@ tasks.withType<Test>().configureEach {
 }
 
 tasks.test {
-    filter {
-        excludeTestsMatching("*FunctionalTest")
-    }
+	filter {
+		excludeTestsMatching("*FunctionalTest")
+	}
 
-    finalizedBy(tasks.jacocoTestReport)
+	finalizedBy(tasks.jacocoTestReport)
 }
 
 tasks.jacocoTestReport {
-    dependsOn(tasks.test)
+	dependsOn(tasks.test)
 
-    reports {
-        html.required = true
-        xml.required = true
-    }
+	reports {
+		html.required = true
+		xml.required = true
+	}
+
 }

@@ -13,6 +13,7 @@ jobs:
         with:
           distribution: "temurin" # Alternative distribution options are available
           java-version: "21"
+
           cache: "gradle"
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
@@ -28,7 +29,6 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
       - name: Set gradlew as executable
         run: chmod +x ./gradlew
-
       - name: run tests
         run: ./gradlew test jacocoTestReport
       - name: Build and analyze
@@ -37,10 +37,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          args:
-            -Dsonar.projectKey=AdvPro-C7_admin
-            -Dsonar.organization=advpro-c7
-            -Dsonar.java.binaries=.
-            -Dsonar.sources=src/main/java
-            -Dsonar.tests=src/test/java
+            args:
+                -Dsonar.projectKey=AdvPro-C7_admin
+                -Dsonar.organization=advpro-c7
+                -Dsonar.java.binaries=.
+                -Dsonar.sources=src/main/java
+                -Dsonar.tests=src/test/java
 
