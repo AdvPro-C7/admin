@@ -14,9 +14,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
@@ -157,6 +161,62 @@ public class BookDetailsControllerTest {
 
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
     }
+
+    @Test
+    void testCheckOutBook(){
+        int bookId = 1;
+        Book book = new Book();
+
+        ResponseEntity responseEntity = bookDetailsController.checkOutBook(bookId, book);
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertNull(responseEntity.getBody());
+    }
+
+    @Test
+    void testCheckOutBookIfError() {
+        int bookId = 1;
+        Book book = new Book();
+
+        doThrow(new RuntimeException("Error occurred")).when(bookDetailsService).checkOutBook(bookId, book);
+
+        ResponseEntity responseEntity = bookDetailsController.checkOutBook(bookId, book);
+
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getBody());
+    }
+
+    @Test
+    public void testGetAllBook() {
+        List<Book> books = new ArrayList<>();
+        books.add(new Book());
+        books.add(new Book());
+
+        when(bookDetailsService.findAllBooks()).thenReturn(books);
+
+        ResponseEntity responseEntity = bookDetailsController.getAllBook();
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertNotNull(responseEntity.getBody());
+        assertTrue(responseEntity.getBody() instanceof Iterable);
+
+        Iterable<Book> returnedBooks = (Iterable<Book>) responseEntity.getBody();
+        List<Book> returnedBookList = StreamSupport.stream(returnedBooks.spliterator(), false)
+                .collect(Collectors.toList());
+        assertEquals(2, returnedBookList.size());
+    }
+
+    @Test
+    public void testGetAllBookIfError() {
+        when(bookDetailsService.findAllBooks()).thenThrow(new RuntimeException("Error occurred"));
+
+        ResponseEntity responseEntity = bookDetailsController.getAllBook();
+
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getBody());
+    }
+
+
 
 
 }

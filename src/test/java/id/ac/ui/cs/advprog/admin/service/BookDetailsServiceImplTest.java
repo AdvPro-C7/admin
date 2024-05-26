@@ -374,7 +374,6 @@ public class BookDetailsServiceImplTest {
         Throwable exception = assertThrows(EntityNotFoundException.class, () -> {
             bookDetailsService.checkOutBook(5, new Book());
         });
-
     }
 
 }
