@@ -9,7 +9,7 @@ public class BookDetailsBuilderTest {
 
     @Test
     void testCreateBookIfValid() {
-        Book book2 = new BookBuilder()
+        Book book2 = new BookBuilderImpl()
                 .bookId(1)
                 .title("Steins Gate 0")
                 .author("Taka Himeno")
@@ -24,6 +24,8 @@ public class BookDetailsBuilderTest {
                 .category("Science Fiction")
                 .sold(0)
                 .build();
+
+
 
         assertEquals(1, book2.getId());
         assertEquals("Steins Gate 0", book2.getTitle());
@@ -43,7 +45,7 @@ public class BookDetailsBuilderTest {
     @Test
     void testCreateBookWithNegativePrice(){
         assertThrows(IllegalArgumentException.class, () -> {
-            Book book1 = new BookBuilder()
+            Book book1 = new BookBuilderImpl()
                     .bookId(2)
                     .title("Steins Gate 0")
                     .author("Taka Himeno")
@@ -65,7 +67,7 @@ public class BookDetailsBuilderTest {
     @Test
     void testCreateBookWithNegativeStock(){
         assertThrows(IllegalArgumentException.class, () -> {
-            Book book1 = new BookBuilder()
+            Book book1 = new BookBuilderImpl()
                     .bookId(2)
                     .title("Steins Gate 0")
                     .author("Taka Himeno")
@@ -87,7 +89,7 @@ public class BookDetailsBuilderTest {
     @Test
     void testCreateBookWithNegativePages(){
         assertThrows(IllegalArgumentException.class, () -> {
-            Book book1 = new BookBuilder()
+            Book book1 = new BookBuilderImpl()
                     .bookId(2)
                     .title("Steins Gate 0")
                     .author("Taka Himeno")
@@ -109,7 +111,7 @@ public class BookDetailsBuilderTest {
     @Test
     void testCreateBookWithZeroPrice(){
         assertThrows(IllegalArgumentException.class, () -> {
-            Book book1 = new BookBuilder()
+            Book book1 = new BookBuilderImpl()
                     .bookId(2)
                     .title("Steins Gate 0")
                     .author("Taka Himeno")
@@ -131,7 +133,7 @@ public class BookDetailsBuilderTest {
     @Test
     void testCreateBookWithZeroStock(){
         assertThrows(IllegalArgumentException.class, () -> {
-            Book book1 = new BookBuilder()
+            Book book1 = new BookBuilderImpl()
                     .bookId(2)
                     .title("Steins Gate 0")
                     .author("Taka Himeno")
@@ -153,7 +155,7 @@ public class BookDetailsBuilderTest {
     @Test
     void testCreateBookWithZeroPages(){
         assertThrows(IllegalArgumentException.class, () -> {
-            Book book1 = new BookBuilder()
+            Book book1 = new BookBuilderImpl()
                     .bookId(2)
                     .title("Steins Gate 0")
                     .author("Taka Himeno")
@@ -175,7 +177,7 @@ public class BookDetailsBuilderTest {
     @Test
     void testCreateBookWithNullValue(){
         assertThrows(IllegalArgumentException.class, () -> {
-            Book book1 = new BookBuilder()
+            Book book1 = new BookBuilderImpl()
                     .price(0)
                     .stock(2)
                     .pages(250)
