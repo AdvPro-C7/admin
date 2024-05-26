@@ -66,4 +66,14 @@ public class BookDetailsController {
         return responseEntity;
     }
 
+    @RequestMapping(value = "/api/book-checkout/{id}", method = RequestMethod.PUT)
+    public ResponseEntity checkOutBook(@PathVariable int id, @RequestBody Book book){
+        return null;
+    }
+
+    @RequestMapping(value = "/api/book-details", method = RequestMethod.GET)
+    public ResponseEntity getAllBook(){
+        return null;
+    }
+
 }
