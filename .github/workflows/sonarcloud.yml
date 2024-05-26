@@ -28,6 +28,7 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
       - name: Set gradlew as executable
         run: chmod +x ./gradlew
+
       - name: run tests
         run: ./gradlew test jacocoTestReport
       - name: Build and analyze
@@ -42,3 +43,4 @@ jobs:
             -Dsonar.java.binaries=.
             -Dsonar.sources=src/main/java
             -Dsonar.tests=src/test/java
+
