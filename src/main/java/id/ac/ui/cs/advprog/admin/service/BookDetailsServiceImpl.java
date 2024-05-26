@@ -70,4 +70,14 @@ public class BookDetailsServiceImpl implements BookDetailsService{
         }
     }
 
+    @Override
+    public Iterable<Book> findAllBooks() {
+        return null;
+    }
+
+    @Override
+    public Book checkOutBook(int id, Book book){
+        return null;
+    }
+
 }
