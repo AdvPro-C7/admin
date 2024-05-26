@@ -17,38 +17,46 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> findAllBooks() {
-        
+        return bookRepository.findAll();
     }
 
     @Override
     public List<Book> searchBooks(String keyword) {
+        return bookRepository.findByKeyword(keyword);
     }
 
     @Override
     public List<Book> findBooksByNewest() {
+        return bookRepository.findAll(Sort.by(Sort.Direction.DESC, "publishDate"));
     }
 
     @Override
     public List<Book> findBooksByPopularity() {
+        return bookRepository.findAll(Sort.by(Sort.Direction.DESC, "sold"));
     }
 
     @Override
     public List<Book> findBooksByPriceAsc() {
+        return bookRepository.findAll(Sort.by(Sort.Direction.ASC, "price"));
     }
 
     @Override
     public List<Book> findBooksByPriceDesc() {
+        return bookRepository.findAll(Sort.by(Sort.Direction.DESC, "price"));
     }
 
     @Override
     public List<Book> searchAndSortBooks(String keyword, BookSortCriteria sortBy) {
+        return bookRepository.searchAndSortBooks(keyword, sortBy.getSortKey());
     }
 
     @Override
     public Optional<Book> getBookById(int id) {
+        return bookRepository.findById(id);
     }
 
     @Override
     public boolean isRepositoryEmpty() {
+        return bookRepository.count() == 0;
     }
 }

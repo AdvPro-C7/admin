@@ -26,23 +26,37 @@ public class BookController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Book>> getBookList() {
-       
+        List<Book> books = bookService.findAllBooks();
+        return ResponseEntity.ok(books);
     }
 
     @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Book>> searchBooks(@RequestParam("keyword") String keyword) {
-        
+        List<Book> books = bookService.searchBooks(keyword);
+        return ResponseEntity.ok(books);
     }
 
     @GetMapping(value = "/search-sort", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> searchAndSortBooks(@RequestParam("keyword") String keyword, @RequestParam("sortBy") String sortBy) {
-        
+        BookSortCriteria sortCriteria;
+        try {
+            sortCriteria = BookSortCriteria.fromString(sortBy);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid sort criteria: " + sortBy);
+        }
+        List<Book> books = bookService.searchAndSortBooks(keyword, sortCriteria);
+        return ResponseEntity.ok(books);
     }
 
 
     @GetMapping(value = "/details/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getBookDetails(@PathVariable("id") int id) {
-        
+        Optional<Book> bookOptional = bookService.getBookById(id);
+        if (bookOptional.isPresent()) {
+            return ResponseEntity.ok(bookOptional.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Book not found");
+        }
     }
 } 
 
