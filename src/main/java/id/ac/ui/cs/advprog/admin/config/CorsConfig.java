@@ -17,8 +17,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebSecurity
 public class CorsConfig {
 
-    public CorsConfig() {
-    }
 
     @SuppressWarnings("removal")
     @Bean
