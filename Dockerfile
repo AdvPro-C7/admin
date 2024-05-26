@@ -1,24 +1,9 @@
-FROM docker.io/library/eclipse-temurin:21-jdk-alpine AS builder
+FROM gradle:jdk21 as builder
+COPY --chown=gradle:gradle . /home/gradle/project
+WORKDIR /home/gradle/project
+RUN gradle build -x test
 
-WORKDIR /src/eshop
-COPY . .
-RUN chmod +x ./gradlew
-RUN ./gradlew clean bootjar
-
-FROM docker.io/library/eclipse-temurin:21-jre-alpine AS runner
-
-ARG USER_NAME=admin
-ARG USER_UID=1000
-ARG USER_GID=${USER_UID}
-
-RUN addgroup -g ${USER_GID} ${USER_NAME} \
-&& adduser -h /opt/eshop -D -u ${USER_UID} -G ${USER_NAME} ${USER_NAME}
-
-USER ${USER_NAME}
-WORKDIR /opt/eshop
-COPY --from=builder --chown=${USER_UID}:${USER_GID} /src/eshop/build/libs/*.jar app.jar
-
-EXPOSE 8080
-
-ENTRYPOINT ["java"]
-CMD ["-jar", "app.jar"]
+FROM openjdk:21-jdk-slim
+VOLUME /tmp
+COPY --from=builder /home/gradle/project/build/libs/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
