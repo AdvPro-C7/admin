@@ -2,6 +2,7 @@ package id.ac.ui.cs.advprog.admin.service;
 
 import id.ac.ui.cs.advprog.admin.model.Book;
 import id.ac.ui.cs.advprog.admin.model.BookBuilder;
+import id.ac.ui.cs.advprog.admin.model.BookBuilderImpl;
 import id.ac.ui.cs.advprog.admin.repository.BookDetailsRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +37,7 @@ public class BookDetailsServiceImplTest {
     public void setUp(){
         books = new ArrayList<>();
 
-        Book book1 = new BookBuilder()
+        Book book1 = new BookBuilderImpl()
                 .bookId(1)
                 .title("Steins Gate 0")
                 .author("Taka Himeno")
@@ -54,7 +55,7 @@ public class BookDetailsServiceImplTest {
 
         books.add(book1);
 
-        Book book2 = new BookBuilder()
+        Book book2 = new BookBuilderImpl()
                 .bookId(2)
                 .title("Steins Gate")
                 .author("Taka Himeno")
@@ -141,7 +142,7 @@ public class BookDetailsServiceImplTest {
 
         Book book1 = books.getFirst();
 
-        Book updatedBook = new BookBuilder()
+        Book updatedBook = new BookBuilderImpl()
                 .bookId(book1.getId())
                 .title(book1.getTitle())
                 .author(book1.getAuthor())
@@ -178,7 +179,7 @@ public class BookDetailsServiceImplTest {
 
         Book book1 = books.getFirst();
 
-        Book updatedBook = new BookBuilder()
+        Book updatedBook = new BookBuilderImpl()
                 .bookId(book1.getId())
                 .title(book1.getTitle())
                 .author(book1.getAuthor())
@@ -208,7 +209,7 @@ public class BookDetailsServiceImplTest {
 
         Book book1 = books.getFirst();
 
-        Book updatedBook = new BookBuilder()
+        Book updatedBook = new BookBuilderImpl()
                 .bookId(book1.getId())
                 .title(book1.getTitle())
                 .author(book1.getAuthor())
@@ -242,7 +243,7 @@ public class BookDetailsServiceImplTest {
 
         Book book1 = books.getFirst();
 
-        Book updatedBook = new BookBuilder()
+        Book updatedBook = new BookBuilderImpl()
                 .bookId(book1.getId())
                 .title("Sword Art Online")
                 .author("Reki Kawahara")
@@ -276,7 +277,7 @@ public class BookDetailsServiceImplTest {
 
         Book book1 = books.getFirst();
 
-        Book updatedBook = new BookBuilder()
+        Book updatedBook = new BookBuilderImpl()
                 .bookId(book1.getId())
                 .title(book1.getTitle())
                 .author(book1.getAuthor())
