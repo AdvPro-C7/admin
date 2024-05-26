@@ -366,4 +366,15 @@ public class BookDetailsServiceImplTest {
         assertNull(resultAfterSold);
     }
 
+    @Test
+    public void testCheckOutBookIfInvalid() {
+
+        doReturn(Optional.empty()).when(bookDetailsRepository).findById(5);
+
+        Throwable exception = assertThrows(EntityNotFoundException.class, () -> {
+            bookDetailsService.checkOutBook(5, new Book());
+        });
+
+    }
+
 }
