@@ -30,10 +30,10 @@ public class Customer {
     @Column(name = "warnings")
     private int warnings;
 
-    protected Customer() {
+    public Customer() {
     }
 
-    private Customer(Builder builder) {
+    public Customer(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.email = builder.email;
