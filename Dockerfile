@@ -2,6 +2,7 @@ FROM gradle:jdk21 as builder
 COPY --chown=gradle:gradle . /home/gradle/project
 WORKDIR /home/gradle/project
 RUN gradle build -x test
+EXPOSE 8080
 
 FROM openjdk:21-jdk-slim
 VOLUME /tmp
