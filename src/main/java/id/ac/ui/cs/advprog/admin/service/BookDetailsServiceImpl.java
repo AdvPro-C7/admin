@@ -69,5 +69,4 @@ public class BookDetailsServiceImpl implements BookDetailsService{
             return null;
         }
     }
-
 }

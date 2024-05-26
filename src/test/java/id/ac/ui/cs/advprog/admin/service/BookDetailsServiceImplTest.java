@@ -12,10 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -300,6 +297,73 @@ public class BookDetailsServiceImplTest {
         assertThrows(EntityNotFoundException.class,
                 () -> bookDetailsService.updateDataBook(100, updatedBook));
 
+    }
+
+    @Test
+    void testGetAllBook(){
+
+        doReturn(books).when(bookDetailsRepository).findAll();
+
+        Iterable<Book> result = bookDetailsService.findAllBooks();
+
+        assertEquals(books.size(), ((List<Book>) result).size());
+        verify(bookDetailsRepository, times(1)).findAll();
+    }
+
+    @Test
+    public void testGetAllBooksIfError() {
+
+        doThrow(new RuntimeException("Database error")).when(bookDetailsRepository).findAll();
+
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            bookDetailsService.findAllBooks();
+        });
+
+        // Assert
+        assertNotNull(exception);
+        assertEquals("Database error", exception.getMessage());
+        verify(bookDetailsRepository, times(1)).findAll();
+    }
+    @Test
+    void testGetAllBookIfEmpty(){
+
+        doReturn(Collections.emptyList()).when(bookDetailsRepository).findAll();
+
+        Iterable<Book> result = bookDetailsService.findAllBooks();
+
+        assertNotNull(result);
+        assertTrue(!result.iterator().hasNext());
+        verify(bookDetailsRepository, times(1)).findAll();
+    }
+
+    @Test
+    public void testCheckOutBook() {
+        Book book1 = books.getFirst();
+
+        doReturn(Optional.of(book1)).when(bookDetailsRepository).findById(book1.getId());
+
+        Book result = bookDetailsService.checkOutBook(1, book);
+
+        assertNotNull(result);
+        assertEquals(1, result.getStock());
+        assertEquals(1, result.getSold());
+    }
+
+    @Test
+    public void testCheckOutBookIfStockOne() {
+        Book book1 = books.getFirst();
+        book1.setStock(1);
+
+        doReturn(Optional.of(book1)).when(bookDetailsRepository).findById(book1.getId());
+
+        Book result = bookDetailsService.checkOutBook(1, book1);
+
+        doReturn(null).when(bookDetailsRepository).findById(book1.getId());
+
+        verify(bookDetailsRepository).delete(book1);
+        Optional<Book> resultAfterSold = bookDetailsService.findById(1);
+
+        assertNull(resultAfterSold);
     }
 
 }
