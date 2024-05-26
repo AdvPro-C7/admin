@@ -21,7 +21,6 @@
 - Code Diagram - Athar (BookDetails)
 ![Code Diagram-athar.png](Code%20Diagram-athar.png)
 
-=======
 # AdvProg - C7 📚
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=AdvPro-C7_admin)
@@ -80,3 +79,4 @@
 
 - Code Diagram - Fikri (BookList)
 ![alt text](<images/Code Diagram-fikri.png>) 
+
