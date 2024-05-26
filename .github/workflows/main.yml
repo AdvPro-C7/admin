@@ -42,7 +42,7 @@ jobs:
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run deploy microservice-voucher \
+          gcloud run deploy microservice-dashboard \
             --image asia-southeast2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID_DASHBOARD }}/admindashboardjose/$GITHUB_SHA \
             --platform managed \
             --region ${{ secrets.GCP_REGION_DASHBOARD }} \
