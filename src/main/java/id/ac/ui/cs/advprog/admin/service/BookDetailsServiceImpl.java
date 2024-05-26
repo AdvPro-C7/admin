@@ -72,12 +72,28 @@ public class BookDetailsServiceImpl implements BookDetailsService{
 
     @Override
     public Iterable<Book> findAllBooks() {
-        return null;
+        return bookDetailsRepository.findAll();
     }
 
     @Override
     public Book checkOutBook(int id, Book book){
-        return null;
+        Optional<Book> findBook = bookDetailsRepository.findById(id);
+        if(findBook.isPresent()){
+            Book existBook = findBook.get();
+
+            if(existBook.getStock() == 1){
+                bookDetailsRepository.delete(existBook);
+                return existBook;
+            }
+
+            existBook.setStock(existBook.getStock() - 1);
+            existBook.setSold(existBook.getSold() + 1);
+
+            bookDetailsRepository.save(existBook);
+            return existBook;
+        } else {
+            throw new EntityNotFoundException();
+        }
     }
 
 }
