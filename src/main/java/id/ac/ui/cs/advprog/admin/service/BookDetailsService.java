@@ -6,10 +6,10 @@ import java.util.Optional;
 
 public interface BookDetailsService {
 
-    public Book createBook(Book book);
-    public Book updateDataBook(int id, Book book);
-    public Optional<Book> findById(int id);
-    public Book deleteBook(int id);
+    Book createBook(Book book);
+    Book updateDataBook(int id, Book book);
+    Optional<Book> findById(int id);
+    Book deleteBook(int id);
     Iterable<Book> findAllBooks();
-    public Book checkOutBook(int id, Book book);
+    Book checkOutBook(int id, Book book);
 }
