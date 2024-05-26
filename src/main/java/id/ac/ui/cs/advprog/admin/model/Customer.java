@@ -30,6 +30,7 @@ public class Customer {
     @Column(name = "warnings")
     private int warnings;
 
+
     public Customer() {
     }
 
