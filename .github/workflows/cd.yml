@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows: ["Continuous Integration (CI)"]
     branches:
-      - feat/athar
+      - athar
     types:
       - completed
 
