@@ -2,7 +2,7 @@ name: Continous Deployment (CD)
 
 on:
   push:
-    - athar
+    - "athar"
   pull_request:
 
 
