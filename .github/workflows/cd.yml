@@ -39,7 +39,4 @@ jobs:
           --image gcr.io/${{ secrets.GCP_PORJECT_ID_BOOK_DETAILS }}/admin \
           --platform managed \
           --allow-unauthenticated \
-          --project ${{ secrets.GCP_PORJECT_ID_BOOK_DETAILS }} \
-          --set-env-vars=PG_HOST=${{ secrets.PG_HOST_BOOK_DETAILS }} \
-          --set-env-vars=PG_USER=${{ secrets.PG_USER_BOOK_DETAILS }} \
-          --set-env-vars=PG_PASS=${{ secrets.PG_PASS_BOOK_DETAILS }}
+          --project ${{ secrets.GCP_PORJECT_ID_BOOK_DETAILS }}
