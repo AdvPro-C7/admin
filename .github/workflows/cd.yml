@@ -30,17 +30,17 @@ jobs:
 
       - name: Build
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID_BOOK_DETAILS }}/helloworld:latest .
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID_BOOK_DETAILS }}/admin:latest .
 
       - name: Push
         run: |
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID_BOOK_DETAILS }}/helloworld:latest
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID_BOOK_DETAILS }}/admin:latest
 
       - name: Deploy
         run: |
-          gcloud run deploy helloworld \
+          gcloud run deploy admin \
           --region europe-west1 \
-          --image gcr.io/${{ secrets.GCP_PROJECT_ID_BOOK_DETAILS }}/helloworld \
+          --image gcr.io/${{ secrets.GCP_PROJECT_ID_BOOK_DETAILS }}/admin \
           --platform managed \
           --allow-unauthenticated \
           --project ${{ secrets.GCP_PROJECT_ID_BOOK_DETAILS }}
